@@ -54,9 +54,9 @@ if __name__ == '__main__':
 
     while np.linalg.norm(Yt - Y_prev, ord=1) > tolerance:
         P = np.dot(D_rbf_inv, W_rbf)
+        Y_prev = Yt.copy()
         Yt = np.dot(P, Yt)
         Yt[0:nb_samples - nb_unlabeled] = Y[0:nb_samples - nb_unlabeled]
-        Y_prev = Yt.copy()
 
     Y_final = np.sign(Yt)
 
